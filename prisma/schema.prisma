@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+//! Connexion à la base de données
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//! Définition des modèles de données selon notre script SQL
+model User {
+  id        Int      @id @default(autoincrement())
+  nom       String
+  prenom    String
+  email     String   @unique
+  password  String
+  role      String   @default("user")
+  is_logged Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user") // Pour mapper les noms de champs Prisma avec les noms de champs de la base de données
+}
+
+model Pot {
+  id        Int      @id @default(autoincrement())
+  namePot   String   @map("name_pot")
+  imageUrl  String?  @map("image_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  potColors PotColor[]
+
+  @@map("pot")
+}
+
+model Color {
+  id        Int      @id @default(autoincrement())
+  nameColor String   @map("name_color")
+  potColors PotColor[]
+
+  @@map("color")
+}
+
+model PotColor {
+  potId   Int
+  colorId Int
+  pot     Pot     @relation(fields: [potId], references: [id])
+  color   Color   @relation(fields: [colorId], references: [id])
+
+  @@id([potId, colorId])
+  @@map("pot_color")
+}
+
+model Plante {
+  id        Int      @id @default(autoincrement())
+  namePlante String  @map("name_plante")
+  description String @map("description")
+  imageUrl  String?  @map("image_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("plante")
+}

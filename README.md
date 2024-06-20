@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **KAP (Kit à Planter)**
 
-## Getting Started
-
-First, run the development server:
+Pour lancer le projet :
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000) avec votre navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# **En savoir plus**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**_Les technologies utilisées_** : TypeScript, Next.js, React.js, PostgreSQL, Prisma, TailwindCSS, React-Hook-Form, Zustand, Bcrypt, UploadThing.
 
-## Learn More
+Il y a une page d'accueil, une page de connexion, une page d'inscription, une page administrateur et enfin une page de conception du kit.
 
-To learn more about Next.js, take a look at the following resources:
+# **Guide d'utilisation**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **Page d'accueil**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Sur la page d'accueil, nous avons deux boutons : `Concevoir mon kit` et `Se Connecter`. Pour accéder à la page de Conception du kit, il va falloir être connecté. Appuyer sur ce bouton vous redirigera automatiquement vers la page de connexion s'il vous ne l'êtes pas.
 
-## Deploy on Vercel
+Le logo KAP permet d'accéder à la page d'accueil.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Si vous êtes connecté, vous pouvez vous déconnecter en appuyant sur le logo de déconnexion qui se trouve en haut à droite.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### **Page de connexion & d'inscription**
+
+Vous pouvez vous connecter en remplissant le formulaire de connexion avec votre mail et votre mot de passe si vous vous êtes déjà inscrit.  
+Si ce n'est pas le cas, un lien vous redirige vers la page d'inscription pour y rentrer vos informations afin de créer un compte sur notre application web.
+
+### **Page de Conception**
+
+Vous vous êtes connecté et vous avez donc accès à la page de conception. Par défaut, cette page est initialisé sur la conception d'un kit avec un pot rond. Pour changer de modèle de pot, vous pouvez cliquer sur l'un des deux boutons en haut de la page qui changera le modèle du formulaire.
+
+Vous pouvez d'abord choisir votre pot via le select, puis vous pouvez choisir vos plantes de la même manière. Ces éléments s'afficheront dynamiquement sur l'écran afin de vous montrer le résultat de vos choix.
+
+Les prix du pot et des plantes s'afficheront juste en dessous pour vous indiquer combien coute chaque élément ainsi que le total.
+
+### **Page Administrateur**
+
+Pour accéder à cette page, vous devez vous connecter en tant qu'admin. Cela fera apparaitre un bouton qui vous redirigera vers l'espace Admin.  
+Ici, vous pouvez voir toutes les plantes et tous les pots qui ont été ajoutés. Vous pouvez ajouter un pot ou une plante, les modifier ou les supprimer en appuyant sur les boutons correspondant.  
+Cela ouvrira une fenêtre modal qui vous permettra de remplir le formulaire pour l'action en question. Le bouton "fermer" des formulaires vient annuler le processus.
