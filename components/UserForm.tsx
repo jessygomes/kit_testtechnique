@@ -1,7 +1,7 @@
 "use client";
 import { userDefaultValues } from "@/constants";
 import React, { useState } from "react";
-import { FieldValue, useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 type UserFormProps = {
@@ -38,7 +38,7 @@ export const UserForm = ({
   //! Modal
   if (!isOpen) return null;
 
-  const onSubmit = async (data: FieldValue) => {
+  const onSubmit = async (data: FieldValues) => {
     console.log(data);
 
     if (type === "Créer") {
