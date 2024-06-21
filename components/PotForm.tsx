@@ -15,6 +15,11 @@ type PotFormProps = {
   ajouterPot: (nouvellePlante: PotType) => void;
 };
 
+interface Couleur {
+  id: string; // or number, depending on your data
+  nameColor: string;
+}
+
 const PotForm = ({
   isOpen,
   onClose,
@@ -54,7 +59,7 @@ const PotForm = ({
 
   // ! Gestion des couleurs
   // État pour stocker les couleurs chargées et la nouvelle couleur
-  const [couleurs, setCouleurs] = useState<string[]>([]);
+  const [couleurs, setCouleurs] = useState<Couleur[]>([]);
   const [nouvelleCouleur, setNouvelleCouleur] = useState("");
 
   useEffect(() => {
@@ -84,17 +89,18 @@ const PotForm = ({
   };
 
   // Gérer l'ajout d'une nouvelle couleur à la base de données
-  const ajouterNouvelleCouleur = async (couleur: string) => {
+  const ajouterNouvelleCouleur = async (couleurName: string) => {
     try {
-      await fetch("/api/couleurs", {
+      const response = await fetch("/api/couleurs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ couleur }),
+        body: JSON.stringify({ couleurName }),
       });
+      const newCouleur = await response.json();
       // Recharger les couleurs ou ajouter la nouvelle couleur à l'état local
-      setCouleurs([...couleurs, couleur]);
+      setCouleurs([...couleurs, newCouleur]);
     } catch (erreur) {
       console.error("Erreur lors de l'ajout d'une nouvelle couleur:", erreur);
     }
