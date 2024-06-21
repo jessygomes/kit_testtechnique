@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 type ModalSuppUserProps = {
   isOpen: boolean;
   onClose: () => void;
-  userId: string;
+  userId?: string;
   supprimerUser: (id: string) => void;
 };
 
@@ -22,7 +22,7 @@ export const ModalSuppUser = ({
       if (res.ok) {
         console.log("Utilisateur supprimé");
         toast.success("Utilisateur supprimé");
-        supprimerUser(userId);
+        supprimerUser(userId ? userId : "");
         onClose();
       }
     } catch (error) {
